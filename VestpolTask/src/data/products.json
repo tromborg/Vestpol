@@ -1,0 +1,67 @@
+[
+{
+"id": "p-1001",
+"name": "Pocket Bluetooth Speaker",
+"price": 39.99,
+"rating": 4.3,
+"category": "Audio",
+"inStock": true,
+"tags": ["portable", "wireless"],
+"image": "/images/speaker.jpg",
+"createdAt": "2025-05-14T10:00:00Z",
+"description": "Small form factor with surprisingly full sound; 8h battery.",
+"specs": { "weight": "180g", "battery": "8h", "bluetooth": "5.3" }
+},
+{
+"id": "p-1002",
+"name": "USB-C Travel Charger 65W",
+"price": 49.0,
+"rating": 4.6,
+"category": "Power",
+"inStock": false,
+"tags": ["gan", "fast-charge"],
+"image": "/images/charger.jpg",
+"createdAt": "2025-03-02T09:00:00Z",
+"description": "Compact GaN charger with dual USB-C ports and foldable prongs.",
+"specs": { "ports": 2, "maxWatt": 65 }
+},
+{
+"id": "p-1003",
+"name": "Noise-Cancelling Headphones",
+"price": 129.99,
+"rating": 4.1,
+"category": "Audio",
+"inStock": true,
+"tags": ["anc", "over-ear"],
+"image": "/images/headphones.jpg",
+"createdAt": "2025-06-20T12:30:00Z",
+"description": "Over-ear ANC headphones with 30h battery and comfy pads.",
+"specs": { "battery": "30h", "codecs": ["AAC", "SBC"] }
+},
+{
+"id": "p-1004",
+"name": "Smart Desk Lamp",
+"price": 59.99,
+"rating": 3.9,
+"category": "Home",
+"inStock": true,
+"tags": ["dimmable", "app"],
+"image": "/images/lamp.jpg",
+"createdAt": "2025-04-12T18:45:00Z",
+"description": "Adjustable color temperature, app + manual controls, USB-C powered.",
+"specs": { "lumens": 800, "temperatureK": [2700, 6500] }
+},
+{
+"id": "p-1005",
+"name": "Ergonomic Mouse",
+"price": 69.99,
+"rating": 4.7,
+"category": "Peripherals",
+"inStock": true,
+"tags": ["wireless", "ergonomic"],
+"image": "/images/mouse.jpg",
+"createdAt": "2025-01-05T08:15:00Z",
+"description": "Vertical grip reduces wrist strain; multi-device pairing.",
+"specs": { "dpi": 16000, "connections": ["BT", "2.4GHz"] }
+}
+]
