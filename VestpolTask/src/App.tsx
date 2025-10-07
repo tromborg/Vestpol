@@ -1,22 +1,9 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import productsData from "./data/products.json";
-
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  rating: number;
-  category: string;
-  inStock: boolean;
-  tags: string[];
-  image: string;
-  createdAt: string;
-  description: string;
-  specs: Record<string, string | number | string[] | number[] | undefined>;
-};
+import ProductCard from "./components/productCard";
+import CompareView from "./components/compareView";
+import type { Product } from "./types/Product";
 
 function App() {
   const [search, setSearch] = useState("");
@@ -162,79 +149,31 @@ function App() {
             </select>
           </div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {filteredProducts.map((p) => (
-            <div
-              key={p.id}
-              className="bg-white rounded-xl shadow hover:shadow-md transition p-4"
-            >
-              <h3 className="font-semibold text-xl">{p.name}</h3>
-              <p>{p.category}</p>
-              <img
-                src="/public/images/camera.png"
-                alt={p.name}
-                className="rounded-lg mb-3 h-40 object-cover mx-auto"
+        {filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {filteredProducts.map((p) => (
+              <ProductCard
+                key={p.id}
+                product={p}
+                compareList={compareList}
+                onCompareToggle={addRemoveCompareList}
               />
-
-              <p className="font-bold">{p.price} Kr.</p>
-              <p className="text-yellow-500 text-sm">⭐ {p.rating}</p>
-              <p className={`${p.inStock ? `text-green-500` : `text-red-500`}`}>
-                {p.inStock ? "In storage" : "Not in storage"}
-              </p>
-              <button
-                onClick={() => addRemoveCompareList(p)}
-                className={`mx-auto px-4 py-2 ${
-                  compareList.find((c) => c.id === p.id)
-                    ? `!bg-red-400 hover:!bg-red-500`
-                    : `!bg-blue-400 hover:!bg-blue-500`
-                }`}
-              >
-                {compareList.find((c) => c.id === p.id)
-                  ? "Remove from compare"
-                  : "Add to compare"}
-              </button>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <h3 className="text-red-500">No results</h3>
+        )}
       </main>
+
       {compareList.length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg p-4">
-          <h2 className="text-xl font-semibold mb-2">Compare Products</h2>
-          <div className="flex gap-4 overflow-x-auto justify-center">
-            {compareList.length > 0 && (
-              <div className="fixed bottom-0 bg-white left-0 right-0 shadow-lg p-4 border-t overflow-x-auto">
-                <h2 className="mb-4 text-lg font-semibold text-gray-700">
-                  Compare Products
-                </h2>
-                <div className="flex gap-4 justify-center">
-                  {compareList.map((p) => (
-                    <div
-                      key={p.id}
-                      className="min-w-[250px] bg-gray-100 rounded-lg p-3 shadow-sm flex gap-3 items-center"
-                    >
-                      <img
-                        src={"/public/images/camera.png"}
-                        alt={p.name}
-                        className="w-24 h-24 object-contain rounded-lg bg-white flex-shrink-0"
-                      />
-                      <div className="flex flex-col justify-center">
-                        <h3 className="font-bold">{p.name}</h3>
-                        <p className="text-gray-600">{p.category}</p>
-                        <p className="font-semibold">{p.price} kr.</p>
-                        <p className="text-yellow-500">⭐ {p.rating}</p>
-                        <p
-                          className={`${
-                            p.inStock ? "text-green-600" : "text-red-500"
-                          }`}
-                        >
-                          {p.inStock ? "In Stock" : "Out of Stock"}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+        <div className="fixed bottom-0 bg-white left-0 right-0 shadow-lg p-4 border-t overflow-x-auto">
+          <h2 className="mb-4 text-lg font-semibold text-gray-700">
+            Compare Products
+          </h2>
+          <div className="flex gap-4 justify-center">
+            {compareList.map((p) => (
+              <CompareView key={p.id} compareList={compareList} />
+            ))}
           </div>
         </div>
       )}
